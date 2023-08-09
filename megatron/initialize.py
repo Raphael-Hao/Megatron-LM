@@ -51,7 +51,7 @@ def initialize_megatron(
 
     # set global args, build tokenizer, and set adlr-autoresume,
     # tensorboard-writer, and timers.
-    set_global_variables(args)
+    set_global_variables(args, False)
 
     # torch.distributed initialization
     def finish_mpu_init():
