@@ -257,8 +257,7 @@ def get_model(model_provider_func, model_type=ModelType.encoder_or_decoder, wrap
                 add_decoder=add_decoder)
         else:
             model = model_provider_func(
-                pre_process=pre_process,
-                post_process=post_process
+                args.arch
             )
         model.model_type = model_type
 
@@ -863,7 +862,7 @@ def evaluate(forward_step_func,
                             key, torch.cuda.FloatTensor([0.0])) + loss_dict[key]
 
             args.consumed_valid_samples += eval_batch_size
-        
+
         collected_non_loss_data = None
         if process_non_loss_data_func is not None and is_last_rank():
             collected_non_loss_data = forward_backward_func(
